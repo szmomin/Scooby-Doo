@@ -1,8 +1,8 @@
 import java.util.Scanner;
 
 /**
- * This class is part of the "World of Zuul" application. 
- * "World of Zuul" is a very simple, text based adventure game.  
+ * This class is part of the "Scooby Doo: Mystery of the Haunted Mansion" application. 
+ * "Scooby Doo: Mystery of the Haunted Mansion" is a very simple, text based mystery game.  
  * 
  * This parser reads user input and tries to interpret it as an "Adventure"
  * command. Every time it is called it reads a line from the terminal and

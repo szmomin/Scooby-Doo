@@ -54,13 +54,13 @@ public class Haunted_Mansion
         cemetary.setAction("Inspect the Mosileum", "Oh no! Velma lost her glasses! You have now lost Velma.");
         cemetary.setAction("Inspect the tool shed.", "Uhhhh... yep. There are only gardening tools here!");
         cemetary.setAction("Inspect the broken angel statue", "Look! A watch! It looks like Dr. Alcott's watch from the painting over the fireplace! A clue! A clue! Good boy Scooby!");
-        cemetary.setExit("Go back to the kitchen", kitchen);
+        cemetary.setExit("Go left to the kitchen", kitchen);
 
         study.setAction("Inspect Mr. Alcott's desk", "Google search history is on how to kidnap someone! A clue! A clue! Good boy Scooby!");
         study.setAction("Inspect the bookshelves", "Could these books be any more boring? Nothing here. Keep looking!");
         study.setAction("Inspect the reading sofa.", "Nothing here, but this sofa does look comfy enough for rainy day naps.");
         study.setAction("Inspect the fireplace", "You found Velma's glasses! Velma is now back with the gang. Good boy Scooby!");
-        study.setExit("Go back to the living room", livingroom);
+        study.setExit("Go right to the living room", livingroom);
 
         kitchen.setAction("Inspect the pantry", "Well... nothing here. Oooh!!! A box of Scooby Snacks! Yum! Yum! Yum!");
         kitchen.setAction("Inspect the counters", "Oh no! Shaggy ate all the food on the counter and got food poisoning! You have now lost Shaggy.");
@@ -99,7 +99,7 @@ public class Haunted_Mansion
         bathroom.setAction("Inspect the medicine cabinet", "You found stomachache medicine for Shaggy! Shaggy is now back with the gang. Good boy Scooby!");
         bathroom.setAction("Inspect under the sink.", "Cleaning supplies and toilet paper. Dr. Alcott sure kept his mansion spotless, Scoob!");
         bathroom.setAction("Inspect the small box on the counter", "A shaving kit. Not really a clue. Keep looking, Scooby Doo!");
-        bathroom.setExit("Go north to the hallway", hallway);
+        bathroom.setExit("Go south to the hallway", hallway);
 
         fatherbedroom.setAction("Inspect the nightstand", "A Bible, two notebooks, and some writing pens. Nothing out of the ordinary.");
         fatherbedroom.setAction("Inspect under the bed", "Nothing under the bed. Guess we have to try again, Scoob.");
