@@ -113,7 +113,7 @@ public class Haunted_Mansion
         sonbedroom.setAction("Inspect under the bed", "Oh no! The ghost appears and whisks Daphne away! You have now lost Daphne.");
         sonbedroom.setExit("Go left to the hallway", hallway);
 
-        livingroom.setExit("Go left to the study", study);
+        livingroom.setExit("Go left", study);
         livingroom.setExit("Go right to the dining room", diningroom);
         livingroom.setExit("Go up to the hallway", hallway);
         livingroom.setExit("Go down to the wine cellar", winecellar);
