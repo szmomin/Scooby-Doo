@@ -27,6 +27,7 @@ public class Haunted_Mansion
     {
         createRooms();
         parser = new Parser();
+        play();
     }
 
     /**
@@ -37,86 +38,97 @@ public class Haunted_Mansion
         Room cemetary, study, kitchen, diningroom, livingroom, hallway, winecellar, dungeon, bathroom, fatherbedroom, sonbedroom;
 
         // create the rooms
-        cemetary = new Room("You are now outside in the back garden, which turns out to be a creepy and spooky graveyard!!!");
-        study = new Room("You are in Dr. Alcott's study, which is also a library. There's a huge desk in the middle of the room.");
-        kitchen = new Room("You are now in the mansion's massive kitchen, where there is sure to be a delicious feast waiting. Ain't that right, Scoob?");
-        diningroom = new Room("You are now in the dining room. Watch out for the expensive china and ancient paintings Scooby!");
-        hallway = new Room("You are now in the upstairs hallway. Which room would you like to enter from here?");
-        winecellar = new Room("You are now in the wine cellar with wonderful vintage wine and stacks of huge wooden barrels. Tread carefully, Scooby . . . ");
-        dungeon = new Room("You are now in the dungeon of the mansion. It used to hold prisoners and slaves a long time ago. Now it's mainly used for storage.");
-        bathroom = new Room("You are now in the bathroom. Don't forget to flush!");
-        fatherbedroom = new Room("You are now in the father's bedroom. Could there possibly be a clue here too, Scooby Doo?");
-        sonbedroom = new Room("You are now in the son's bedroom. Let's check it out, Scoobs!");
-        livingroom = new Room("You are now in the living room. Ask the caretaker a question or go to another room.");
+        cemetary = new Room("You are now outside in the back garden, which turns out to be a creepy and spooky graveyard!!!" + 
+                            "\n The kitchen is to your left.");
+        study = new Room("You are in Dr. Alcott's study, which is also a library. There's a huge desk in the middle of the room." + 
+                            "\n The living room is to your right.");
+        kitchen = new Room("You are now in the mansion's massive kitchen, where there is sure to be a delicious feast waiting. Ain't that right, Scoob?" + 
+                            "\n The dining room is to the south, and the cemetary to the right.");
+        diningroom = new Room("You are now in the dining room. Watch out for the expensive china and ancient paintings Scooby!" +
+                            "\n The kitchen is to your north and the living room is to your left.");
+        hallway = new Room("You are now in the upstairs hallway. Which room would you like to enter from here?" +
+                            "\n The bathroom is to the north, Mr. Alcott's room to the left, Wren's room to the right, the living room to the south");
+        winecellar = new Room("You are now in the wine cellar with wonderful vintage wine and stacks of huge wooden barrels. Tread carefully, Scooby . . ."+
+                            "\n The dungeon is to the right, the living room is up.");
+        dungeon = new Room("You are now in the dungeon of the mansion. It used to hold prisoners and slaves a long time ago. Now it's mainly used for storage."+
+                            "\n The winecellar is to the left.");
+        bathroom = new Room("You are now in the bathroom. Don't forget to flush!" +
+                            "\n The hallway is to the south.");
+        fatherbedroom = new Room("You are now in the father's bedroom. Could there possibly be a clue here too, Scooby Doo? "+
+                            "\n The hallway is to the right.");
+        sonbedroom = new Room("You are now in the son's bedroom. Let's check it out, Scoobs!" +
+                            "\n The hallway is to the left.");
+        livingroom = new Room("You are now in the living room. Ask the caretaker a question or go to another room." + 
+                            "\n The study is to the left, the dining room to the right, the wineceller down, and the hallway up.");
 
         // initialise room exits
         cemetary.setAction("Inspect the grave stone", "There are a few cobwebs, but other than that, nothing!");
         cemetary.setAction("Inspect the Mosileum", "Oh no! Velma lost her glasses! You have now lost Velma.");
         cemetary.setAction("Inspect the tool shed.", "Uhhhh... yep. There are only gardening tools here!");
-        cemetary.setAction("Inspect the broken angel statue", "Look! A watch! It looks like Dr. Alcott's watch from the painting over the fireplace! A clue! A clue! Good boy Scooby!");
-        cemetary.setExit("Go left to the kitchen", kitchen);
+        cemetary.setAction("Inspect the broken angel statue", "Look! A rope and a white sheet! A clue! A clue! The rope can rescue Fred from the trapdoor! Fred is now back with the gang Good boy Scooby!");
+        cemetary.setExit("left", kitchen);
 
         study.setAction("Inspect Mr. Alcott's desk", "Google search history is on how to kidnap someone! A clue! A clue! Good boy Scooby!");
         study.setAction("Inspect the bookshelves", "Could these books be any more boring? Nothing here. Keep looking!");
         study.setAction("Inspect the reading sofa.", "Nothing here, but this sofa does look comfy enough for rainy day naps.");
         study.setAction("Inspect the fireplace", "You found Velma's glasses! Velma is now back with the gang. Good boy Scooby!");
-        study.setExit("Go right to the living room", livingroom);
+        study.setExit("right", livingroom);
 
         kitchen.setAction("Inspect the pantry", "Well... nothing here. Oooh!!! A box of Scooby Snacks! Yum! Yum! Yum!");
         kitchen.setAction("Inspect the counters", "Oh no! Shaggy ate all the food on the counter and got food poisoning! You have now lost Shaggy.");
-        kitchen.setAction("Inspect the kitchen table.", "Under the table is a cellphone. It has to be Dr. Alcotts'! A clue! A clue! Last text is to the gardener arguing about a pay raise. Hmmmmm...");
+        kitchen.setAction("Inspect the kitchen table.", "Under the table is a cellphone has to be Dr. Alcotts'! A clue! A clue! Last text is to the gardener arguing about a pay raise. Hmmmmm...");
         kitchen.setAction("Inspect the cabinets", "Unless you really like expensive silverware and porcelain dishes, this looks like a dead end to me, Scoob.");
-        kitchen.setExit("Go south to the dining room", diningroom);
-        kitchen.setExit("Go right to the cemetary", cemetary);
+        kitchen.setExit("south", diningroom);
+        kitchen.setExit("right", cemetary);
 
         diningroom.setAction("Inspect the china cabinet", "So many dishes! So few clues! Try again Scooby Doo!");
         diningroom.setAction("Inspect the dining room table", "What an incredibly large table! The Alcott family must have been monstrously large at some point.");
         diningroom.setAction("Inspect the jade vase next to the armoire.", "Here is a key! A clue! A clue! It must unlock the safe! You have found Dr. Alcott's will! Good boy Scooby!");
         diningroom.setAction("Inspect the wooden armoire", "Oops. Nothing here. Keep looking Scooby!");
-        diningroom.setExit("Go left to the living room", livingroom);
-        diningroom.setExit("Go north to the kitchen", kitchen);
+        diningroom.setExit("left", livingroom);
+        diningroom.setExit("north", kitchen);
 
-        hallway.setExit("Go left to Dr. Alcott's bedroom", fatherbedroom);
-        hallway.setExit("Go right to Wren's bedroom", sonbedroom);
-        hallway.setExit("Go north to the bathroom", bathroom);
-        hallway.setExit("Go down to the living room", livingroom);
+        hallway.setExit("left", fatherbedroom);
+        hallway.setExit("right", sonbedroom);
+        hallway.setExit("north", bathroom);
+        hallway.setExit("down", livingroom);
 
         winecellar.setAction("Inspect the wine shelf", "Hmmm. According to the dust on these old wine bottles here, they have not been moved in years. Keep looking, Scooby!");
-        winecellar.setAction("Inspect the wine barrels", "Look! A rope and a white sheet! A clue! A clue! The rope can rescue Fred from the trapdoor! Fred is now back with the gang Good boy Scooby!");
+        winecellar.setAction("Inspect the wine barrels", "Look! A watch! It looks like Dr. Alcott's watch from the painting over the fireplace! A clue! A clue! Good boy Scooby!");
         winecellar.setAction("Inspect the bottle supply box.", "Oh no! The ghost leaps out and fights Fred and pushes him down a trap door! You have now lost Fred.");
         winecellar.setAction("Inspect the cork supply box", "Just a box full of corks. Nothing really to see here, Scoob.");
-        winecellar.setExit("Go up to the living room", livingroom);
-        winecellar.setExit("Go right to the dungeon", dungeon);
+        winecellar.setExit("up", livingroom);
+        winecellar.setExit("right", dungeon);
 
         dungeon.setAction("Inspect the tapestries on the wall.", "Look! Footprints that lead to a secret passageway! A clue! A clue! Good boy Scooby!");
         dungeon.setAction("Inspect the weapons closet", "Eeeek! There are swords and axes, Scoob! But nothing that would help solve the mystery.");
         dungeon.setAction("Inspect the dungeon cell", "You found Daphne locked in the cell! Daphne is now back with the gang. Good boy Scooby!");
         dungeon.setAction("Inspect the alcove in the corner", "As creepy and dark as this is, looks like nothing is here, Scoob.");
-        dungeon.setExit("Go left to the wine cellar", winecellar);
-        dungeon.setExit("Go up the secret passageway", cemetary);
+        dungeon.setExit("left", winecellar);
+        dungeon.setExit("up", cemetary);
 
         bathroom.setAction("Inspect the bathtub", "Don't see anything, but sure looks like a creepy tub to take a bath in!");
         bathroom.setAction("Inspect the medicine cabinet", "You found stomachache medicine for Shaggy! Shaggy is now back with the gang. Good boy Scooby!");
         bathroom.setAction("Inspect under the sink.", "Cleaning supplies and toilet paper. Dr. Alcott sure kept his mansion spotless, Scoob!");
         bathroom.setAction("Inspect the small box on the counter", "A shaving kit. Not really a clue. Keep looking, Scooby Doo!");
-        bathroom.setExit("Go south to the hallway", hallway);
+        bathroom.setExit("south", hallway);
 
         fatherbedroom.setAction("Inspect the nightstand", "A Bible, two notebooks, and some writing pens. Nothing out of the ordinary.");
         fatherbedroom.setAction("Inspect under the bed", "Nothing under the bed. Guess we have to try again, Scoob.");
         fatherbedroom.setAction("Inspect the closet", "Look! A safe! A clue! A clue! I wonder how we can open it? Good boy Scooby!");
         fatherbedroom.setAction("Inspect the dresser", "Just a bunch of clothes and old famous doctor like Dr. Alcott would wear!");
-        fatherbedroom.setExit("Go right to the hallway", hallway);
+        fatherbedroom.setExit("right", hallway);
 
         sonbedroom.setAction("Inspect inside the wooden desk", "Look! An angry letter on debt that Wren owes! A clue! A clue! Good boy Scooby!");
         sonbedroom.setAction("Inspect the wardrobe", "Hmmmm. Wren has nice taste in clothes. Atta boy!");
         sonbedroom.setAction("Inspect the nightstand", "The drawers are emptry. Interesting...");
         sonbedroom.setAction("Inspect under the bed", "Oh no! The ghost appears and whisks Daphne away! You have now lost Daphne.");
-        sonbedroom.setExit("Go left to the hallway", hallway);
+        sonbedroom.setExit("left", hallway);
 
-        livingroom.setExit("Go left", study);
-        livingroom.setExit("Go right to the dining room", diningroom);
-        livingroom.setExit("Go up to the hallway", hallway);
-        livingroom.setExit("Go down to the wine cellar", winecellar);
+        livingroom.setExit("left", study);
+        livingroom.setExit("right", diningroom);
+        livingroom.setExit("up", hallway);
+        livingroom.setExit("down", winecellar);
 
         currentRoom = livingroom;  // start game outside
     }
@@ -189,7 +201,7 @@ public class Haunted_Mansion
             break;
 
             case INSPECT:
-            goRoom(command);
+            goAction(command);
             break;
 
             case QUIT:
@@ -243,6 +255,17 @@ public class Haunted_Mansion
             currentRoom = nextRoom;
             System.out.println(currentRoom.getLongDescription());
         }
+    }
+    
+    /** 
+     * Prints the Action's results
+     * UNDER REVISION 
+     * ****This method is NOT complete!!! ***** 
+     */
+    private void goAction(Command command) {
+        String action = command.getSecondWord();
+        String result = currentRoom.getAction(action);
+        System.out.println(result);
     }
 
     /** 

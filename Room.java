@@ -93,10 +93,10 @@ public class Room
      */
     private String getActionString()
     {
-        String returnString = "Actions:";
+        String returnString = "Actions: ";
         Set<String> keys = actions.keySet();
         for(String action : keys) {
-            returnString += ", " + action;
+            returnString += action + ", ";
         }
         return returnString;
     }
@@ -108,10 +108,10 @@ public class Room
      */
     private String getExitString()
     {
-        String returnString = "Exits:";
+        String returnString = "Exits: ";
         Set<String> keys = exits.keySet();
         for(String exit : keys) {
-            returnString += ", " + exit;
+            returnString += exit + ", ";
         }
         return returnString;
     }
