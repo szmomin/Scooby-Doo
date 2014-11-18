@@ -73,29 +73,37 @@ public class Haunted_Mansion
                             "\n The study is to the left, the dining room to the right, the wineceller down, and the hallway up.");
         
         // initialise room exits and actions
+        /*
         cemetary.setAction("Inspect the grave stone", "There are a few cobwebs, but other than that, nothing!");
         cemetary.setAction("Inspect the Mosileum", "Oh no! Velma lost her glasses! You have now lost Velma.");
         cemetary.setAction("Inspect the tool shed.", "Uhhhh... yep. There are only gardening tools here!");
         cemetary.setAction("Inspect the broken angel statue", "Look! A rope and a white sheet! A clue! A clue! The rope can rescue Fred from the trapdoor! Fred is now back with the gang Good boy Scooby!");
+        */
         cemetary.setExit("left", kitchen);
-
+        
+        /*
         study.setAction("Inspect Mr. Alcott's desk", "Google search history is on how to kidnap someone! A clue! A clue! Good boy Scooby!");
         study.setAction("Inspect the bookshelves", "Could these books be any more boring? Nothing here. Keep looking!");
         study.setAction("Inspect the reading sofa.", "Nothing here, but this sofa does look comfy enough for rainy day naps.");
-        //study.setAction("Inspect the fireplace", "You found Velma's glasses! Velma is now back with the gang. Good boy Scooby!");     
+        study.setAction("Inspect the fireplace", "You found Velma's glasses! Velma is now back with the gang. Good boy Scooby!");     
+        */
         study.setExit("right", livingroom);
 
+        /*
         kitchen.setAction("Inspect the pantry", "Well... nothing here. Oooh!!! A box of Scooby Snacks! Yum! Yum! Yum!");
         kitchen.setAction("Inspect the counters", "Oh no! Shaggy ate all the food on the counter and got food poisoning! You have now lost Shaggy.");
         kitchen.setAction("Inspect the kitchen table.", "Under the table is a cellphone has to be Dr. Alcotts'! A clue! A clue! Last text is to the gardener arguing about a pay raise. Hmmmmm...");
         kitchen.setAction("Inspect the cabinets", "Unless you really like expensive silverware and porcelain dishes, this looks like a dead end to me, Scoob.");
+        */
         kitchen.setExit("south", diningroom);
         kitchen.setExit("right", cemetary);
 
+        /*
         diningroom.setAction("Inspect the china cabinet", "So many dishes! So few clues! Try again Scooby Doo!");
         diningroom.setAction("Inspect the dining room table", "What an incredibly large table! The Alcott family must have been monstrously large at some point.");
         diningroom.setAction("Inspect the jade vase next to the armoire.", "Here is a key! A clue! A clue! It must unlock the safe! You have found Dr. Alcott's will! Good boy Scooby!");
         diningroom.setAction("Inspect the wooden armoire", "Oops. Nothing here. Keep looking Scooby!");
+        */
         diningroom.setExit("left", livingroom);
         diningroom.setExit("north", kitchen);
 
@@ -103,37 +111,43 @@ public class Haunted_Mansion
         hallway.setExit("right", sonbedroom);
         hallway.setExit("north", bathroom);
         hallway.setExit("down", livingroom);
-
+        /*
         winecellar.setAction("Inspect the wine shelf", "Hmmm. According to the dust on these old wine bottles here, they have not been moved in years. Keep looking, Scooby!");
         winecellar.setAction("Inspect the wine barrels", "Look! A watch! It looks like Dr. Alcott's watch from the painting over the fireplace! A clue! A clue! Good boy Scooby!");
         winecellar.setAction("Inspect the bottle supply box.", "Oh no! The ghost leaps out and fights Fred and pushes him down a trap door! You have now lost Fred.");
         winecellar.setAction("Inspect the cork supply box", "Just a box full of corks. Nothing really to see here, Scoob.");
+        */
         winecellar.setExit("up", livingroom);
         winecellar.setExit("right", dungeon);
-
+        /*
         dungeon.setAction("Inspect the tapestries on the wall.", "Look! Footprints that lead to a secret passageway! A clue! A clue! Good boy Scooby!");
         dungeon.setAction("Inspect the weapons closet", "Eeeek! There are swords and axes, Scoob! But nothing that would help solve the mystery.");
         dungeon.setAction("Inspect the dungeon cell", "You found Daphne locked in the cell! Daphne is now back with the gang. Good boy Scooby!");
         dungeon.setAction("Inspect the alcove in the corner", "As creepy and dark as this is, looks like nothing is here, Scoob.");
+        */
         dungeon.setExit("left", winecellar);
         dungeon.setExit("up", cemetary);
-
+        /*
         bathroom.setAction("Inspect the bathtub", "Don't see anything, but sure looks like a creepy tub to take a bath in!");
         bathroom.setAction("Inspect the medicine cabinet", "You found stomachache medicine for Shaggy! Shaggy is now back with the gang. Good boy Scooby!");
         bathroom.setAction("Inspect under the sink.", "Cleaning supplies and toilet paper. Dr. Alcott sure kept his mansion spotless, Scoob!");
         bathroom.setAction("Inspect the small box on the counter", "A shaving kit. Not really a clue. Keep looking, Scooby Doo!");
+        */
         bathroom.setExit("south", hallway);
 
+        /*
         fatherbedroom.setAction("Inspect the nightstand", "A Bible, two notebooks, and some writing pens. Nothing out of the ordinary.");
         fatherbedroom.setAction("Inspect under the bed", "Nothing under the bed. Guess we have to try again, Scoob.");
         fatherbedroom.setAction("Inspect the closet", "Look! A safe! A clue! A clue! I wonder how we can open it? Good boy Scooby!");
         fatherbedroom.setAction("Inspect the dresser", "Just a bunch of clothes and old famous doctor like Dr. Alcott would wear!");
+        */
         fatherbedroom.setExit("right", hallway);
-
+        /*
         sonbedroom.setAction("Inspect inside the wooden desk", "Look! An angry letter on debt that Wren owes! A clue! A clue! Good boy Scooby!");
         sonbedroom.setAction("Inspect the wardrobe", "Hmmmm. Wren has nice taste in clothes. Atta boy!");
         sonbedroom.setAction("Inspect the nightstand", "The drawers are emptry. Interesting...");
         sonbedroom.setAction("Inspect under the bed", "Oh no! The ghost appears and whisks Daphne away! You have now lost Daphne.");
+        */
         sonbedroom.setExit("left", hallway);
 
         livingroom.setExit("left", study);
@@ -151,8 +165,95 @@ public class Haunted_Mansion
     }
     
     private void createItems(){
+        // Items for the Study
+        TESTItems desk = new TESTItems ("desk", "Google search history is on how to kidnap someone! A clue! A clue! Good boy Scooby!");
+        study.setItem("desk", desk);
+        TESTItems bookshelves = new TESTItems ("bookshelves", "Could these books be any more boring? Nothing here. Keep looking!");
+        study.setItem("bookshelves", bookshelves);
+        TESTItems sofa = new TESTItems ("sofa.", "Nothing here, but this sofa does look comfy enough for rainy day naps.");
+        study.setItem("sofa", sofa);
         TESTItems fireplace = new TESTItems ("fireplace", "You found Velma's glasses! Velma is now back with the gang. Good boy Scooby!");
         study.setItem("fireplace", fireplace);
+        
+        // Items for the Cemetary
+        TESTItems gravestone = new TESTItems ("gravestone", "There are a few cobwebs, but other than that, nothing!");
+        cemetary.setItem("gravestone", gravestone);
+        TESTItems mosileum = new TESTItems ("mosileum", "Oh no! Velma lost her glasses! You have now lost Velma.");
+        cemetary.setItem("mosileum", mosileum);
+        TESTItems toolshed = new TESTItems ("toolshed.", "Uhhhh... yep. There are only gardening tools here!");
+        cemetary.setItem("toolshed", toolshed);
+        TESTItems statue = new TESTItems ("statue", "Look! A rope and a white sheet! A clue! A clue! The rope can rescue Fred from the trapdoor! Fred is now back with the gang Good boy Scooby!");
+        cemetary.setItem("statue", statue);
+        
+        // Items for the Kitchen
+        TESTItems pantry = new TESTItems ("pantry", "Well... nothing here. Oooh!!! A box of Scooby Snacks! Yum! Yum! Yum!");
+        kitchen.setItem("pantry", pantry);
+        TESTItems counters = new TESTItems ("counters", "Oh no! Shaggy ate all the food on the counter and got food poisoning! You have now lost Shaggy.");
+        kitchen.setItem("counters", counters);
+        TESTItems table = new TESTItems ("table.", "Under the table is a cellphone has to be Dr. Alcotts'! A clue! A clue! Last text is to the gardener arguing about a pay raise. Hmmmmm...");
+        kitchen.setItem("table", table);
+        TESTItems cabinets = new TESTItems ("cabinets", "Unless you really like expensive silverware and porcelain dishes, this looks like a dead end to me, Scoob.");
+        kitchen.setItem("cabinets", cabinets);
+        
+        // Items for the Dinning Room
+        TESTItems cabinet = new TESTItems ("cabinet", "So many dishes! So few clues! Try again Scooby Doo!");
+        diningroom.setItem("cabinet", cabinet);
+        TESTItems dinningtable = new TESTItems ("dinningtable", "What an incredibly large table! The Alcott family must have been monstrously large at some point.");
+        diningroom.setItem("table", table);
+        TESTItems vase = new TESTItems ("vase", "Here is a key! A clue! A clue! It must unlock the safe! You have found Dr. Alcott's will! Good boy Scooby!");
+        diningroom.setItem("vase", vase);
+        TESTItems armoire = new TESTItems ("armoire", "Oops. Nothing here. Keep looking Scooby!");
+        diningroom.setItem("armoire", armoire);
+        
+        // Items for the Winecellar
+        TESTItems wineshelf = new TESTItems ("wineshelf", "Hmmm. According to the dust on these old wine bottles here, they have not been moved in years. Keep looking, Scooby!");
+        winecellar.setItem("wineshelf", wineshelf);
+        TESTItems barrels = new TESTItems ("barrels", "Look! A watch! It looks like Dr. Alcott's watch from the painting over the fireplace! A clue! A clue! Good boy Scooby!");
+        winecellar.setItem("barrels", barrels);
+        TESTItems winebox = new TESTItems ("winebox.", "Oh no! The ghost leaps out and fights Fred and pushes him down a trap door! You have now lost Fred.");
+        winecellar.setItem("winebox", winebox);
+        TESTItems supplybox = new TESTItems ("supplybox", "Just a box full of corks. Nothing really to see here, Scoob.");
+        winecellar.setItem("supplybox", supplybox);
+        
+        // Items for the Dungeon
+        TESTItems tapestries = new TESTItems ("tapestries", "Look! Footprints that lead to a secret passageway! A clue! A clue! Good boy Scooby!");
+        dungeon.setItem("tapestries", tapestries);
+        TESTItems closet = new TESTItems ("closet", "Eeeek! There are swords and axes, Scoob! But nothing that would help solve the mystery.");
+        dungeon.setItem("closet", closet);
+        TESTItems cell = new TESTItems ("cell", "You found Daphne locked in the cell! Daphne is now back with the gang. Good boy Scooby!");
+        dungeon.setItem("cell", cell);
+        TESTItems alcove = new TESTItems ("alcove", "As creepy and dark as this is, looks like nothing is here, Scoob.");
+        dungeon.setItem("alcove", alcove);
+        
+        // Items for the Bathroom
+        TESTItems bathtub = new TESTItems ("bathtub", "Don't see anything, but sure looks like a creepy tub to take a bath in!");
+        bathroom.setItem("bathtub", bathtub);
+        TESTItems BathroomCabinet = new TESTItems ("BathroomCabinet", "You found stomachache medicine for Shaggy! Shaggy is now back with the gang. Good boy Scooby!");
+        bathroom.setItem("BathroomCabinet", BathroomCabinet);
+        TESTItems sink = new TESTItems ("sink.", "Cleaning supplies and toilet paper. Dr. Alcott sure kept his mansion spotless, Scoob!");
+        bathroom.setItem("sink", sink);
+        TESTItems box = new TESTItems ("box", "A shaving kit. Not really a clue. Keep looking, Scooby Doo!");
+        bathroom.setItem("box", box);
+        
+        // Items for the Father's Bathroom
+        TESTItems nightstand = new TESTItems ("nightstand", "A Bible, two notebooks, and some writing pens. Nothing out of the ordinary.");
+        fatherbedroom.setItem("nightstand", nightstand);
+        TESTItems bed = new TESTItems ("bed", "Nothing under the bed. Guess we have to try again, Scoob.");
+        fatherbedroom.setItem("bed", bed);
+        TESTItems FatherCloset = new TESTItems ("FatherCloset", "Look! A safe! A clue! A clue! I wonder how we can open it? Good boy Scooby!");
+        fatherbedroom.setItem("FatherCloset", FatherCloset);
+        TESTItems dresser = new TESTItems ("dresser", "Just a bunch of clothes and old famous doctor like Dr. Alcott would wear!");
+        fatherbedroom.setItem("dresser", dresser);
+        
+        // Items for the son's bedroom
+        TESTItems SonDesk = new TESTItems ("SonDesk", "Look! An angry letter on debt that Wren owes! A clue! A clue! Good boy Scooby!");
+        sonbedroom.setItem("SonDesk", SonDesk);
+        TESTItems wardrobe = new TESTItems ("wardrobe", "Hmmmm. Wren has nice taste in clothes. Atta boy!");
+        sonbedroom.setItem("wardrobe", wardrobe);
+        TESTItems SonNightstand = new TESTItems ("SonNightstand", "The drawers are emptry. Interesting...");
+        sonbedroom.setItem("SonNightstand", SonNightstand);
+        TESTItems SonBed = new TESTItems ("SonBed", "Oh no! The ghost appears and whisks Daphne away! You have now lost Daphne.");
+        sonbedroom.setItem("SonBed", SonBed);
     }
     
     /**
@@ -291,27 +392,18 @@ public class Haunted_Mansion
             
             return;
 
-        } else {
-            
-        }
-        // The below two statements are used to create the TESTItems object and inputting in the hashmap as well
-        //      TESTItems fireplace = new TESTItems ("fireplace", "You found Velma's glasses! Velma is now back with the gang. Good boy Scooby!");
-        //      study.setItem("fireplace", fireplace);
-        
+        }  
         String itemName = command.getSecondWord();
-        TESTItems blah = study.items.get(itemName);
-        String Description = blah.getItemDescription();
-        System.out.println(Description);
-        
-        /*
-        if (nextRoom == null) {
-            System.out.println("There is no door!");
+        TESTItems itemInRoom = currentRoom.items.get(itemName);
+        if (itemInRoom != null){
+            String Description = itemInRoom.getItemDescription();
+            System.out.println(Description);
+        } else {
+            System.out.println("Sorry, this item is not in this room or it does not exist");
+            return;
         }
-        else {
-            currentRoom = nextRoom;
-            System.out.println(currentRoom.getLongDescription());
-        }
-        */
+        //String Description = blah.getItemDescription();
+        //System.out.println(Description);
     }
     
     public static void getItemValue() {
