@@ -1,10 +1,10 @@
 import java.util.ArrayList;
+import java.util.HashMap;
 
 /**
- *  This class is the main class of the "World of Zuul" application. 
- *  "World of Zuul" is a very simple, text based adventure game.  Users 
- *  can walk around some scenery. That's all. It should really be extended 
- *  to make it more interesting!
+ *  This class is the main class of the "Scooby Doo: Mystery of the Haunted Mansion" application. 
+ *  "Scooby Doo: Mystery of the Haunted Mansion" is a very simple, text based mystery game.
+ *  Users can walk around a haunted mansion and inspect things.
  * 
  *  To play this game, create an instance of this class and call the "play"
  *  method.
@@ -21,8 +21,10 @@ public class Haunted_Mansion
 {
     private Parser parser;
     private Room currentRoom;
-    private ArrayList<Item> inventory;
-    private Item fireplace;
+    Room cemetary, study, kitchen, diningroom, livingroom, hallway, winecellar, dungeon, bathroom, fatherbedroom, sonbedroom;
+    //private HashMap<String, TESTItems> items;
+    //private ArrayList<Item> inventory;
+    //private Item fireplace;
 
     /**
      * Create the game and initialise its internal map.
@@ -30,18 +32,22 @@ public class Haunted_Mansion
     public Haunted_Mansion() 
     {
         createRooms();
-        inventory = new ArrayList<Item>();
+        createItems();
+        //inventory = new ArrayList<Item>();
+        //items = new HashMap<String, TESTItems>();
         parser = new Parser();
         play();
     }
 
     /**
      * Create all the rooms and link their exits together.
+     * And has the room descriptions
      */
     private void createRooms()
     {
-        Room cemetary, study, kitchen, diningroom, livingroom, hallway, winecellar, dungeon, bathroom, fatherbedroom, sonbedroom;
-
+        //Room cemetary, study, kitchen, diningroom, livingroom, hallway, winecellar, dungeon, bathroom, fatherbedroom, sonbedroom;
+        //TESTItems fireplace;
+        
         // create the rooms
         cemetary = new Room("You are now outside in the back garden, which turns out to be a creepy and spooky graveyard!!!" + 
                             "\n The kitchen is to your left.");
@@ -66,7 +72,7 @@ public class Haunted_Mansion
         livingroom = new Room("You are now in the living room. Ask the caretaker a question or go to another room." + 
                             "\n The study is to the left, the dining room to the right, the wineceller down, and the hallway up.");
         
-        // initialise room exits
+        // initialise room exits and actions
         cemetary.setAction("Inspect the grave stone", "There are a few cobwebs, but other than that, nothing!");
         cemetary.setAction("Inspect the Mosileum", "Oh no! Velma lost her glasses! You have now lost Velma.");
         cemetary.setAction("Inspect the tool shed.", "Uhhhh... yep. There are only gardening tools here!");
@@ -76,7 +82,7 @@ public class Haunted_Mansion
         study.setAction("Inspect Mr. Alcott's desk", "Google search history is on how to kidnap someone! A clue! A clue! Good boy Scooby!");
         study.setAction("Inspect the bookshelves", "Could these books be any more boring? Nothing here. Keep looking!");
         study.setAction("Inspect the reading sofa.", "Nothing here, but this sofa does look comfy enough for rainy day naps.");
-        // study.setAction("Inspect the fireplace", "You found Velma's glasses! Velma is now back with the gang. Good boy Scooby!");
+        //study.setAction("Inspect the fireplace", "You found Velma's glasses! Velma is now back with the gang. Good boy Scooby!");     
         study.setExit("right", livingroom);
 
         kitchen.setAction("Inspect the pantry", "Well... nothing here. Oooh!!! A box of Scooby Snacks! Yum! Yum! Yum!");
@@ -136,14 +142,18 @@ public class Haunted_Mansion
         livingroom.setExit("down", winecellar);
         
         //Add Items
-        Item fireplace;
-        fireplace = new Item("Fireplace");
-        study.addItem(fireplace);
-        study.getItem(1);
+        //Item fireplace;
+        //fireplace = new Item("Fireplace");
+        //study.addItem(fireplace);
+        //study.getItem(1);
 
         currentRoom = livingroom;  // start game outside
     }
-
+    
+    private void createItems(){
+        TESTItems fireplace = new TESTItems ("fireplace", "You found Velma's glasses! Velma is now back with the gang. Good boy Scooby!");
+        study.setItem("fireplace", fireplace);
+    }
     
     /**
      *  Main play routine.  Loops until end of play.
@@ -269,6 +279,44 @@ public class Haunted_Mansion
         }
     }
     
+    /**
+     * .goItem.
+     * This method deals with picking up items
+     */
+    private void goItem(Command command) 
+    {
+        if(!command.hasSecondWord()) {
+            // if there is no second word, we don't know what to inspect...
+            System.out.println("Inspect what?");
+            
+            return;
+
+        } else {
+            
+        }
+        // The below two statements are used to create the TESTItems object and inputting in the hashmap as well
+        //      TESTItems fireplace = new TESTItems ("fireplace", "You found Velma's glasses! Velma is now back with the gang. Good boy Scooby!");
+        //      study.setItem("fireplace", fireplace);
+        
+        String itemName = command.getSecondWord();
+        TESTItems blah = study.items.get(itemName);
+        String Description = blah.getItemDescription();
+        System.out.println(Description);
+        
+        /*
+        if (nextRoom == null) {
+            System.out.println("There is no door!");
+        }
+        else {
+            currentRoom = nextRoom;
+            System.out.println(currentRoom.getLongDescription());
+        }
+        */
+    }
+    
+    public static void getItemValue() {
+        
+    }
     
     /** 
      * Prints the Action's results
@@ -284,10 +332,12 @@ public class Haunted_Mansion
    /**
     * Go item
     */
+   /*
    private void goItem(Command command)
    {
        System.out.println("I hate life");
     }
+   */
 
     /** 
      * "Quit" was entered. Check the rest of the command to see
