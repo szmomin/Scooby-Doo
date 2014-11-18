@@ -1,3 +1,5 @@
+import java.util.ArrayList;
+
 /**
  *  This class is the main class of the "World of Zuul" application. 
  *  "World of Zuul" is a very simple, text based adventure game.  Users 
@@ -19,6 +21,8 @@ public class Haunted_Mansion
 {
     private Parser parser;
     private Room currentRoom;
+    private ArrayList<Item> inventory;
+    private Item fireplace;
 
     /**
      * Create the game and initialise its internal map.
@@ -26,6 +30,7 @@ public class Haunted_Mansion
     public Haunted_Mansion() 
     {
         createRooms();
+        inventory = new ArrayList<Item>();
         parser = new Parser();
         play();
     }
@@ -60,7 +65,7 @@ public class Haunted_Mansion
                             "\n The hallway is to the left.");
         livingroom = new Room("You are now in the living room. Ask the caretaker a question or go to another room." + 
                             "\n The study is to the left, the dining room to the right, the wineceller down, and the hallway up.");
-
+        
         // initialise room exits
         cemetary.setAction("Inspect the grave stone", "There are a few cobwebs, but other than that, nothing!");
         cemetary.setAction("Inspect the Mosileum", "Oh no! Velma lost her glasses! You have now lost Velma.");
@@ -71,7 +76,7 @@ public class Haunted_Mansion
         study.setAction("Inspect Mr. Alcott's desk", "Google search history is on how to kidnap someone! A clue! A clue! Good boy Scooby!");
         study.setAction("Inspect the bookshelves", "Could these books be any more boring? Nothing here. Keep looking!");
         study.setAction("Inspect the reading sofa.", "Nothing here, but this sofa does look comfy enough for rainy day naps.");
-        study.setAction("Inspect the fireplace", "You found Velma's glasses! Velma is now back with the gang. Good boy Scooby!");
+        // study.setAction("Inspect the fireplace", "You found Velma's glasses! Velma is now back with the gang. Good boy Scooby!");
         study.setExit("right", livingroom);
 
         kitchen.setAction("Inspect the pantry", "Well... nothing here. Oooh!!! A box of Scooby Snacks! Yum! Yum! Yum!");
@@ -129,10 +134,17 @@ public class Haunted_Mansion
         livingroom.setExit("right", diningroom);
         livingroom.setExit("up", hallway);
         livingroom.setExit("down", winecellar);
+        
+        //Add Items
+        Item fireplace;
+        fireplace = new Item("Fireplace");
+        study.addItem(fireplace);
+        study.getItem(1);
 
         currentRoom = livingroom;  // start game outside
     }
 
+    
     /**
      *  Main play routine.  Loops until end of play.
      */
@@ -201,7 +213,7 @@ public class Haunted_Mansion
             break;
 
             case INSPECT:
-            goAction(command);
+            goItem(command);
             break;
 
             case QUIT:
@@ -257,15 +269,24 @@ public class Haunted_Mansion
         }
     }
     
+    
     /** 
      * Prints the Action's results
      * UNDER REVISION 
      * ****This method is NOT complete!!! ***** 
      */
-    private void goAction(Command command) {
+    /*private void goAction(Command command) {
         String action = command.getSecondWord();
-        String result = currentRoom.getAction(action);
+        String result = currentItem.getAction(action);
         System.out.println(result);
+    }
+    */
+   /**
+    * Go item
+    */
+   private void goItem(Command command)
+   {
+       System.out.println("I hate life");
     }
 
     /** 

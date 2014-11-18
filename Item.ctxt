@@ -1,0 +1,8 @@
+#BlueJ class context
+comment0.params=itemName
+comment0.target=Item(java.lang.String)
+comment0.text=\n\ Create\ an\ item\ described\ "description".\ "description"\ is\ something\ like\ "a\ watch"\ or\n\ "a\ computer".\n\ @param\ description\ The\ item's\ description.\n
+comment1.params=
+comment1.target=java.lang.String\ getItemName()
+comment1.text=\n\ @return\ The\ short\ description\ of\ the\ item\n\ (the\ one\ that\ was\ defined\ in\ the\ constructor).\n
+numComments=2
