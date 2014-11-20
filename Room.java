@@ -20,9 +20,7 @@ import java.util.ArrayList;
 public class Room 
 {
     private String roomdescription;
-    private String actiondescription;
     private HashMap<String, Room> exits;// stores exits of this room.
-    private HashMap<String, String> actions;
     //private HashMap<String, Item> items;
     public HashMap<String, Items> items;
     private String name;
@@ -38,7 +36,6 @@ public class Room
     {
         this.roomdescription = roomdescription;
         exits = new HashMap<String, Room>();
-        actions = new HashMap<String, String>();
         //items = new HashMap<String, Item>();
         items = new HashMap<String, Items>();
         //items = new ArrayList<Item>();
@@ -71,16 +68,7 @@ public class Room
     }
     */
     
-    /**
-     * Define a direction within this room.
-     * @param direction The direction in the room.
-     * @param action What happens when Scooby goes in that direction.
-     */
-    public void setAction(String action, String result) 
-    {
-        actions.put(action, result);
-    }
-
+ 
     /**
      * @return The short description of the room
      * (the one that was defined in the constructor).
@@ -90,14 +78,7 @@ public class Room
         return roomdescription;
     }
     
-    /**
-     * @return The short description of the room
-     * (the one that was defined in the constructor).
-     */
-    public String getActionDescription()
-    {
-        return actiondescription;
-    }
+
 
     /**
      * Return a description of the room in the form:
@@ -107,23 +88,10 @@ public class Room
      */
     public String getLongDescription()
     {
-        return roomdescription + ".\n" + getActionString() + ".\n"  + getExitString();
+        return roomdescription + ".\n" + ".\n"  + getExitString();
     }
 
-    /**
-     * Return a string describing the room's possible exploration avenues, for example
-     * "Directions: inspect grave headstone".
-     * @return Details of the room's actions.
-     */
-    private String getActionString()
-    {
-        String returnString = "Actions: ";
-        Set<String> keys = actions.keySet();
-        for(String action : keys) {
-            returnString += action + ", ";
-        }
-        return returnString;
-    }
+   
     
     /**
      * Return a string describing the room's exits, for example
@@ -151,16 +119,7 @@ public class Room
         return exits.get(direction);
     }
     
-        /**
-     * Return the room that is reached if we go from this room in direction
-     * "direction". If there is no room in that direction, return null.
-     * @param direction The exit's direction.
-     * @return The room in the given direction.
-     */
-    public String getAction(String action) 
-    {
-        return actions.get(action);
-    }
+ 
    
     /**
      * Add an item to the room

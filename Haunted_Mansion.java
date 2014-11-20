@@ -365,11 +365,11 @@ public class Haunted_Mansion
         }
 
         String direction = command.getSecondWord();
-        String action = command.getSecondWord();
+        //String action = command.getSecondWord();
 
         // Try to leave current room.
         Room nextRoom = currentRoom.getExit(direction);
-        String nextAction = currentRoom.getAction(action);
+        //String nextAction = currentRoom.getAction(action);
 
         if (nextRoom == null) {
             System.out.println("There is no door!");
