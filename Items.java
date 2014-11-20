@@ -1,9 +1,9 @@
 import java.util.HashMap;
 /**
- * This is a test class.
+ * 
  * That creates Items in the Haunted Mansion
  */
-public class TESTItems
+public class Items
 {
     // instance variables - replace the example below with your own
     private String itemName;
@@ -12,9 +12,9 @@ public class TESTItems
     //private HashMap<String, TESTItems> items;
     
     /**
-     * Constructor for objects of class TESTItems
+     * Constructor for objects of class Items
      */
-    public TESTItems(String itemName, String itemDescription)
+    public Items(String itemName, String itemDescription)
     {
         this.itemName = itemName;
         this.itemDescription = itemDescription;

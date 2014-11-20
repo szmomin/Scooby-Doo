@@ -24,7 +24,7 @@ public class Room
     private HashMap<String, Room> exits;// stores exits of this room.
     private HashMap<String, String> actions;
     //private HashMap<String, Item> items;
-    public HashMap<String, TESTItems> items;
+    public HashMap<String, Items> items;
     private String name;
     //private ArrayList<Item> itemLis;
 
@@ -40,7 +40,7 @@ public class Room
         exits = new HashMap<String, Room>();
         actions = new HashMap<String, String>();
         //items = new HashMap<String, Item>();
-        items = new HashMap<String, TESTItems>();
+        items = new HashMap<String, Items>();
         //items = new ArrayList<Item>();
     }
 
@@ -49,7 +49,7 @@ public class Room
      * @param itemName the text the user types in order to view/ pick up an item.
      * @param item  actual item that is picked up or viewed.
      */
-    public void setItem (String itemName, TESTItems item) 
+    public void setItem (String itemName, Items item) 
     {
         items.put(itemName, item);
     }
