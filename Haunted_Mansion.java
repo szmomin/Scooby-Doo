@@ -43,25 +43,25 @@ public class Haunted_Mansion
         Room cemetary, study, kitchen, diningroom, livingroom, hallway, winecellar, dungeon, bathroom, fatherbedroom, sonbedroom;
 
         // create the rooms
-        cemetary = new Room("You are now outside in the back garden, which turns out to be a creepy and spooky graveyard!!!" + 
+        cemetary = new Room("You are now outside in the back garden, which turns out to be a creepy and spooky graveyard! You can inspect the gravestone, mosileum, toolshed, and statue." + 
                             "\n The kitchen is to your left.");
-        study = new Room("You are in Dr. Alcott's study, which is also a library. There's a huge desk in the middle of the room." + 
+        study = new Room("You are in Dr. Alcott's study, which is also a library. There's a huge desk in the middle of the room. You can inspect the desk, bookshelves, fireplace, and sofa." + 
                             "\n The living room is to your right.");
-        kitchen = new Room("You are now in the mansion's massive kitchen, where there is sure to be a delicious feast waiting. Ain't that right, Scoob?" + 
+        kitchen = new Room("You are now in the mansion's massive kitchen, where there is sure to be a delicious feast waiting. Ain't that right, Scoob? You can inspect the pantry, counter, table, and cabinets." + 
                             "\n The dining room is to the south, and the cemetary to the right.");
-        diningroom = new Room("You are now in the dining room. Watch out for the expensive china and ancient paintings Scooby!" +
+        diningroom = new Room("You are now in the dining room. You can inspect the cabinet, diningtable, vase, and armoire. Watch out for the expensive china and ancient paintings Scooby!" +
                             "\n The kitchen is to your north and the living room is to your left.");
         hallway = new Room("You are now in the upstairs hallway. Which room would you like to enter from here?" +
                             "\n The bathroom is to the north, Mr. Alcott's room to the left, Wren's room to the right, the living room to the south");
-        winecellar = new Room("You are now in the wine cellar with wonderful vintage wine and stacks of huge wooden barrels. Tread carefully, Scooby . . ."+
+        winecellar = new Room("You are now in the wine cellar with wonderful vintage wine and stacks of huge wooden barrels. You can inspect the wineshelf, barrels, supplybox, and winebox. Tread carefully, Scooby . . ."+
                             "\n The dungeon is to the right, the living room is up.");
-        dungeon = new Room("You are now in the dungeon of the mansion. It used to hold prisoners and slaves a long time ago. Now it's mainly used for storage."+
-                            "\n The winecellar is to the left.");
-        bathroom = new Room("You are now in the bathroom. Don't forget to flush!" +
+        dungeon = new Room("You are now in the dungeon of the mansion. It used to hold prisoners and slaves a long time ago. Now it's mainly used for storage. You can inspect the tapestries, closet, cell, and alcove."+
+                            "\n The winecellar is to the left, and you feel a strange breeze coming from above.");
+        bathroom = new Room("You are now in the bathroom. You can inspect the bathtub, BathroomCabinet, sink, and box. Don't forget to flush!" +
                             "\n The hallway is to the south.");
-        fatherbedroom = new Room("You are now in the father's bedroom. Could there possibly be a clue here too, Scooby Doo? "+
+        fatherbedroom = new Room("You are now in the father's bedroom. You can inspect the nightstand, bed, FatherCloset, and dresser. Could there possibly be a clue here too, Scooby Doo? "+
                             "\n The hallway is to the right.");
-        sonbedroom = new Room("You are now in the son's bedroom. Let's check it out, Scoobs!" +
+        sonbedroom = new Room("You are now in the son's bedroom. You can inspect the SonBed, SonNightstand, wardrobe, and SonDesk. Let's check it out, Scoobs!" +
                             "\n The hallway is to the left.");
         livingroom = new Room("You are now in the living room. Ask the caretaker a question or go to another room." + 
                             "\n The study is to the left, the dining room to the right, the wineceller down, and the hallway up.");
@@ -72,6 +72,7 @@ public class Haunted_Mansion
         cemetary.setAction("Inspect the tool shed.", "Uhhhh... yep. There are only gardening tools here!");
         cemetary.setAction("Inspect the broken angel statue", "Look! A rope and a white sheet! A clue! A clue! The rope can rescue Fred from the trapdoor! Fred is now back with the gang Good boy Scooby!");
         cemetary.setExit("left", kitchen);
+        cemetary.setExit("down", dungeon);
 
         study.setAction("Inspect Mr. Alcott's desk", "Google search history is on how to kidnap someone! A clue! A clue! Good boy Scooby!");
         study.setAction("Inspect the bookshelves", "Could these books be any more boring? Nothing here. Keep looking!");
