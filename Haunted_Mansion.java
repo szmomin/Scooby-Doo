@@ -184,6 +184,9 @@ public class Haunted_Mansion
         cemetary.setItem("toolshed", toolshed);
         Items statue = new Items ("statue", "Look! A rope and a white sheet! A clue! A clue! The rope can rescue Fred from the trapdoor! Fred is now back with the gang Good boy Scooby!");
         cemetary.setItem("statue", statue);
+        // Create an item that can be picked up
+        ItemCollect rope = new ItemCollect ("rope", "You have now picked up the rope. It is in your inventory", true);
+        cemetary.setItem("rope", rope);
         
         // Items for the Kitchen
         Items pantry = new Items ("pantry", "Well... nothing here. Oooh!!! A box of Scooby Snacks! Yum! Yum! Yum!");
@@ -204,6 +207,9 @@ public class Haunted_Mansion
         diningroom.setItem("vase", vase);
         Items armoire = new Items ("armoire", "Oops. Nothing here. Keep looking Scooby!");
         diningroom.setItem("armoire", armoire);
+        // Create an item that can be picked up
+        ItemCollect key = new ItemCollect ("key", "You have now picked up the key. It is in your inventory", true);
+        diningroom.setItem("key", key);
         
         // Items for the Winecellar
         Items wineshelf = new Items ("wineshelf", "Hmmm. According to the dust on these old wine bottles here, they have not been moved in years. Keep looking, Scooby!");
@@ -326,6 +332,10 @@ public class Haunted_Mansion
             case INSPECT:
             goItem(command);
             break;
+            
+            case COLLECT:
+            goItemCollect(command);            
+            break;
 
             case QUIT:
             wantToQuit = quit(command);
@@ -382,7 +392,7 @@ public class Haunted_Mansion
     
     /**
      * .goItem.
-     * This method deals with picking up items
+     * This method deals with inspecting items
      */
     private void goItem(Command command) 
     {
@@ -398,6 +408,41 @@ public class Haunted_Mansion
         if (itemInRoom != null){
             String Description = itemInRoom.getItemDescription();
             System.out.println(Description);
+        } else {
+            System.out.println("Sorry, this item is not in this room or it does not exist");
+            return;
+        }
+        //String Description = blah.getItemDescription();
+        //System.out.println(Description);
+    }
+    
+    /**
+     * .goItemCollect.
+     * This method deals with picking up items
+     * When the item is pick up here, it needs to stored in the player's arraylist (inventory)
+     */
+    private void goItemCollect(Command command) 
+    {
+        if(!command.hasSecondWord()) {
+            // if there is no second word, we don't know what to collect...
+            System.out.println("Collect what?");
+         
+            return;
+
+        }  
+        String itemName = command.getSecondWord();
+        Items itemInRoom = currentRoom.items.get(itemName);
+        
+        if (itemInRoom != null){
+            // checks to see if the item is able to be collected or not
+           boolean collectItem = itemInRoom.getPickUp(); 
+            if (collectItem){
+                String Description = itemInRoom.getItemDescription();
+                System.out.println(Description);
+            } else {
+                System.out.println("Sorry, this item cannot be picked up");
+                return;
+           }
         } else {
             System.out.println("Sorry, this item is not in this room or it does not exist");
             return;
