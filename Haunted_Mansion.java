@@ -19,6 +19,17 @@ import java.util.HashMap;
 
 public class Haunted_Mansion 
 {
+    private ArrayList<Items> items;
+    private Items thisItem;
+    private String itemName;
+    private String itemDescription;
+    private boolean collect;
+    
+    private ArrayList<MysteryInc> members;
+    private MysteryInc thisMember;
+    private String memberName;
+    private boolean present;
+    
     private Parser parser;
     private Room currentRoom;
     Room cemetary, study, kitchen, diningroom, livingroom, hallway, winecellar, dungeon, bathroom, fatherbedroom, sonbedroom;
@@ -31,12 +42,50 @@ public class Haunted_Mansion
      */
     public Haunted_Mansion() 
     {
+        items = new ArrayList<Items>();
+        members = new ArrayList<MysteryInc>();
         createRooms();
         createItems();
         //inventory = new ArrayList<Item>();
         //items = new HashMap<String, TESTItems>();
         parser = new Parser();
         play();
+    }
+    
+    /*
+     * .ListAllItems.
+     * List all movies in the system.
+     */
+    public void listAllItems()
+    {
+        int index = 0;
+        System.out.println();
+        System.out.println("List Of All Items");
+        System.out.println("Name             Description");
+        while(index < items.size())
+        {
+            thisItem = (Items) items.get(index);
+            thisItem.print();
+            index ++;
+                    }
+    }
+    
+    /*
+     * .ListAllItems.
+     * List all movies in the system.
+     */
+    public void listAllMembers()
+    {
+        int index = 0;
+        System.out.println();
+        System.out.println("List Of All Items");
+        System.out.println("Name            Present?");
+        while(index < members.size())
+        {
+            thisMember = (MysteryInc) members.get(index);
+            thisMember.print();
+            index ++;
+                    }
     }
 
     /**
@@ -439,6 +488,7 @@ public class Haunted_Mansion
             if (collectItem){
                 String Description = itemInRoom.getItemDescription();
                 System.out.println(Description);
+                items.add(itemInRoom); //add the item in the array list items
             } else {
                 System.out.println("Sorry, this item cannot be picked up");
                 return;
@@ -454,27 +504,7 @@ public class Haunted_Mansion
     public static void getItemValue() {
         
     }
-    
-    /** 
-     * Prints the Action's results
-     * UNDER REVISION 
-     * ****This method is NOT complete!!! ***** 
-     */
-    /*private void goAction(Command command) {
-        String action = command.getSecondWord();
-        String result = currentItem.getAction(action);
-        System.out.println(result);
-    }
-    */
-   /**
-    * Go item
-    */
-   /*
-   private void goItem(Command command)
-   {
-       System.out.println("I hate life");
-    }
-   */
+
 
     /** 
      * "Quit" was entered. Check the rest of the command to see

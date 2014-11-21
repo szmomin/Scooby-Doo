@@ -47,4 +47,16 @@ public class Items
     public boolean getPickUp(){
         return true;
     }
+    
+    /**
+     * .print. will print the first part of the line, then will call the super class print method.
+     * 
+     * @param  void
+     * @return  void  
+     */
+    public void print()
+    {
+        System.out.println(itemName + "    " + itemDescription);
+        return;
+    }
 }
