@@ -1,0 +1,5 @@
+#BlueJ class context
+comment0.params=itemName\ itemDescription\ pickUp
+comment0.target=ItemCollect(java.lang.String,\ java.lang.String,\ boolean)
+comment0.text=\r\n\ Constructor\ for\ objects\ of\ class\ Items\r\n
+numComments=1

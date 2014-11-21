@@ -1,0 +1,19 @@
+#BlueJ class context
+comment0.params=itemName\ itemDescription
+comment0.target=Items(java.lang.String,\ java.lang.String)
+comment0.text=\r\n\ Constructor\ for\ objects\ of\ class\ Items\r\n
+comment1.params=
+comment1.target=java.lang.String\ getItemName()
+comment1.text=\r\n\ Returns\ Item\ Name\ \r\n
+comment2.params=
+comment2.target=java.lang.String\ getItemDescription()
+comment2.text=\r\n\ Returns\ Item\ Description\ \r\n
+comment3.params=
+comment3.target=void\ testPickUp()
+comment3.text=\r\n\ Returns\ Item\ Name\ \r\n
+comment4.params=
+comment4.target=boolean\ getPickUp()
+comment5.params=
+comment5.target=void\ print()
+comment5.text=\r\n\ .print.\ will\ print\ the\ first\ part\ of\ the\ line,\ then\ will\ call\ the\ super\ class\ print\ method.\r\n\ \r\n\ @param\ \ void\r\n\ @return\ \ void\ \ \r\n
+numComments=6

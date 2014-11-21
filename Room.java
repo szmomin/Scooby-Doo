@@ -7,7 +7,7 @@ import java.util.ArrayList;
  * Class Room - a room in an adventure game.
  *
  * This class is part of the "Scooby Doo: Mystery of the Haunted Mansion" application. 
- * "Scooby Doo: Mystery of the Haunted Mansion" is a very simple, text based myster game.  
+ * "Scooby Doo: Mystery of the Haunted Mansion" is a very simple, text based mystery game.  
  *
  * A "Room" represents one location in the haunted mansion of the game.  It is 
  * connected to other rooms via exits.  For each existing exit, the room 
@@ -21,11 +21,12 @@ public class Room
 {
     private String roomdescription;
     private String actiondescription;
-    private HashMap<String, Room> exits;
-    private HashMap<String, String> actions;// stores exits of this room.
-    private HashMap<String, Item> itemList;
+    private HashMap<String, Room> exits;// stores exits of this room.
+    private HashMap<String, String> actions;
+    //private HashMap<String, Item> items;
+    public HashMap<String, Items> items;
     private String name;
-    private ArrayList<Item> items;
+    //private ArrayList<Item> itemLis;
 
     /**
      * Create a room described "description". Initially, it has
@@ -36,12 +37,23 @@ public class Room
     public Room(String roomdescription) 
     {
         this.roomdescription = roomdescription;
-        this.actiondescription = actiondescription;
         exits = new HashMap<String, Room>();
         actions = new HashMap<String, String>();
-        items = new ArrayList<Item>();
+        //items = new HashMap<String, Item>();
+        items = new HashMap<String, Items>();
+        //items = new ArrayList<Item>();
     }
 
+        /**
+     * Define an item for this room.
+     * @param itemName the text the user types in order to view/ pick up an item.
+     * @param item  actual item that is picked up or viewed.
+     */
+    public void setItem (String itemName, Items item) 
+    {
+        items.put(itemName, item);
+    }
+    
     /**
      * Define an exit from this room.
      * @param direction The direction of the exit.
@@ -51,6 +63,13 @@ public class Room
     {
         exits.put(direction, neighbor);
     }
+    
+    /**
+    public void setItem(String itemName, Item item) 
+    {
+        items.put(itemName, item);
+    }
+    */
     
     /**
      * Define a direction within this room.
@@ -146,20 +165,24 @@ public class Room
     /**
      * Add an item to the room
      */
-    public void addItem(Item i)
+    //public void addItem(Item i)
     {
-        items.add(i);
+       // items.add(i);
     }
+    
     
     /**
      * Get item from room
      */
+    /*
     public String getItem(int i)
     {
-        if(i<items.size() && i>=0)
+        if(i<items.size() && i>=0){
             return items.get(i).toString();
-        else
+        } else {
             return "Item does not exist";
+        }
     }
+    */
 }
 
