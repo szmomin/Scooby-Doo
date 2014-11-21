@@ -8,7 +8,7 @@ public class Items
     // instance variables - replace the example below with your own
     private String itemName;
     private String itemDescription;
-    boolean pickUp;
+    private boolean pickUp;
     //private HashMap<String, TESTItems> items;
     
     /**
@@ -18,8 +18,9 @@ public class Items
     {
         this.itemName = itemName;
         this.itemDescription = itemDescription;
+        pickUp = false;
     }
-    
+
     /**
      * Returns Item Name 
      */
@@ -32,19 +33,5 @@ public class Items
      */
     public String getItemDescription(){
         return itemDescription;
-    }
-    
-        /**
-     * Returns Item Name 
-     */
-    
-    public void testPickUp(){
-        if (pickUp = false){
-            System.out.println("Item cannot be picked up");
-        }
-    }
-    
-    public boolean getPickUp(){
-        return true;
     }
 }
