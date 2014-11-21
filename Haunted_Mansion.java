@@ -129,13 +129,10 @@ public class Haunted_Mansion
         cemetary.setAction("Inspect the broken angel statue", "Look! A rope and a white sheet! A clue! A clue! The rope can rescue Fred from the trapdoor! Fred is now back with the gang Good boy Scooby!");
         */
         cemetary.setExit("left", kitchen);
-<<<<<<< HEAD
         cemetary.setExit("down", dungeon);
-
-=======
         
         /*
->>>>>>> FETCH_HEAD
+
         study.setAction("Inspect Mr. Alcott's desk", "Google search history is on how to kidnap someone! A clue! A clue! Good boy Scooby!");
         study.setAction("Inspect the bookshelves", "Could these books be any more boring? Nothing here. Keep looking!");
         study.setAction("Inspect the reading sofa.", "Nothing here, but this sofa does look comfy enough for rainy day naps.");
@@ -433,7 +430,7 @@ public class Haunted_Mansion
 
         // Try to leave current room.
         Room nextRoom = currentRoom.getExit(direction);
-        String nextAction = currentRoom.getAction(action);
+        //String nextAction = currentRoom.getAction(action);
 
         if (nextRoom == null) {
             System.out.println("There is no door!");
