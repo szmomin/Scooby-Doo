@@ -1,0 +1,8 @@
+#BlueJ class context
+comment0.params=itemName\ itemDescription\ itemAltDescription
+comment0.target=ItemMember(java.lang.String,\ java.lang.String,\ java.lang.String)
+comment0.text=\r\n\ Constructor\ for\ objects\ of\ class\ Items\r\n
+comment1.params=
+comment1.target=java.lang.String\ getAltDescription()
+comment1.text=\r\n\ .getAltDescription.\r\n\ Returns\ the\ alternative\ description\ when\ necessary\r\n
+numComments=2

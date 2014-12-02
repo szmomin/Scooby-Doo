@@ -5,11 +5,9 @@ import java.util.HashMap;
  */
 public class Items
 {
-    // instance variables - replace the example below with your own
     private String itemName;
     private String itemDescription;
     boolean pickUp;
-    //private HashMap<String, TESTItems> items;
     
     /**
      * Constructor for objects of class Items
