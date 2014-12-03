@@ -1,6 +1,5 @@
 import java.util.ArrayList;
 import java.util.HashMap;
-import java.lang.*;
 
 /**
  *  This class is the main class of the "Scooby Doo: Mystery of the Haunted Mansion" application. 
@@ -17,7 +16,7 @@ import java.lang.*;
  * @author  Michael Kölling and David J. Barnes
  * @version 2011.08.10
  */
-
+ // Comment: The game has no end to it. We can't figure out how to actually end the game and stop it from asking for another input
 public class Haunted_Mansion 
 {
     private ArrayList<String> cluesList;
@@ -45,16 +44,16 @@ public class Haunted_Mansion
     
     //Declares items that can be inspected
     Items bookshelves, sofa, gravestone, pantry, cabinets, cabinet, diningtable, vase, armoire, wineshelf, supplybox, closet, alcove, bathtub, 
-        BathroomCloset, sink, box, nightstand, bed, FatherCloset, dresser, wardrobe, SonNightstand;
+        BathroomCloset, sink, box, nightstand, bed, dresser, wardrobe, SonNightstand;
             
     //Declares items that can be collected
     ItemCollect rope, key;
     
     //Declares itesm that effect members
-    ItemMember fireplace, cell, statue, BathroomCabinet, winebox, mosileum, counters, SonBed;
+    ItemMember fireplace, cell, statue, BathroomCabinet, winebox, mosileum, counters, SonBed, FatherCloset;
     
     //Declares items that are clues
-    Clue desk, toolshed, table, barrels, tapestries, SonDesk;
+    Clue desk, toolshed, table, barrels, tapestries, SonDesk, will;
     
 
     /**
@@ -123,7 +122,7 @@ public class Haunted_Mansion
                             "\n You can inspect the SonBed, SonNightstand, wardrobe, and SonDesk. " +
                             "\n The hallway is to the left.");
                             
-        livingroom = new Room("You are now in the living room. Ask the caretaker a question or go to another room." + 
+        livingroom = new Room("You are now in the living room. You can talk to the caretaker when you are ready to guess by typing the command 'Guess'" + 
                             "\n The study is to the left, the dining room to the right, the wineceller down, and the hallway up.");
         
         // initialise room exits and actions
@@ -180,7 +179,7 @@ public class Haunted_Mansion
         toolshed = new Clue ("toolshed", "Look! Tape and a white sheet! A clue! A clue!", "Tape and white sheet found in the Cemetery's toolshed");
         gravestone = new Items ("gravestone", "There are a few cobwebs, but other than that, nothing!");
         mosileum = new ItemMember ("mosileum", "Oh no! Velma lost her glasses! You have now lost Velma.", " ");
-        statue = new ItemMember ("statue", "Look! A rope that can be collected to maybe used to rescue someone later",
+        statue = new ItemMember ("statue", "Look! A rope that can be collected to maybe used to rescue someone later \n Type 'Collect  key' to collect it.",
                                 "The rope can be used to rescue Fred from the trapdoor! Fred is now back with the gang Good boy Scooby!");
         rope = new ItemCollect ("rope", "You have now picked up the rope. It is in your inventory", true);
         cemetary.setItem("toolshed", toolshed);
@@ -205,7 +204,7 @@ public class Haunted_Mansion
         // Items for the Dinning Room
         cabinet = new Items ("cabinet", "So many dishes! So few clues! Try again Scooby Doo!");
         diningtable = new Items ("diningtable", "What an incredibly large table! The Alcott family must have been monstrously large at some point.");
-        vase = new Items ("vase", "Here is a key! A clue! A clue! It must unlock the safe! You have found Dr. Alcott's will! Good boy Scooby!");
+        vase = new Items ("vase", "Here is a key! A clue! A clue! It must unlock the safe! You have found Dr. Alcott's will! Good boy Scooby! \n Type 'Collect  key' to collect it.");
         armoire = new Items ("armoire", "Oops. Nothing here. Keep looking Scooby!");
         key = new ItemCollect ("key", "You have now picked up the key. It is in your inventory", true);
         diningroom.setItem("cabinet", cabinet);
@@ -253,13 +252,18 @@ public class Haunted_Mansion
         // Items for the Father's Bathroom
         nightstand = new Items ("nightstand", "A Bible, two notebooks, and some writing pens. Nothing out of the ordinary.");
         bed = new Items ("bed", "Nothing under the bed. Guess we have to try again, Scoob.");
-        FatherCloset = new Items ("FatherCloset", "Look! A safe! A clue! A clue! I wonder how we can open it? Good boy Scooby!");
+        FatherCloset = new ItemMember ("FatherCloset", "Look! A safe! I wonder how we can open it? We should look for a key. Good boy Scooby!", 
+                                        "Look! A safe! We can use the key to open it. There's a will inside. You can inspect the will");
+        will = new Clue ("will", "Look! It's Dr. Alcotts will. A clue! A clue! It says that Wren will inherit everything if Dr. Alcott disappears. \n And all of the wine goes the caretaker", 
+                        "Will declaring Wren inherits everything and the wine goes the caretaker");
         dresser = new Items ("dresser", "Just a bunch of clothes and old famous doctor like Dr. Alcott would wear!");
         // Needs a clue about the will
         fatherbedroom.setItem("nightstand", nightstand);
         fatherbedroom.setItem("bed", bed);
         fatherbedroom.setItem("FatherCloset", FatherCloset);
         fatherbedroom.setItem("dresser", dresser);
+        fatherbedroom.setItem("will", will);
+        clues.put("will", will);
         
         // Items for the son's bedroom
         SonDesk = new Clue ("SonDesk", "Look! An angry letter on debt that Wren owes! A clue! A clue! Good boy Scooby!", "Angry debtors letter addressed to Wren");
@@ -335,6 +339,7 @@ public class Haunted_Mansion
         System.out.println("Type '" + CommandWord.INSPECT + "' to inspect objects in a room.");
         System.out.println("Type '" + CommandWord.COLLECT + "' to collect items.");
         System.out.println("Type '" + CommandWord.INVENTORY + "' to view items, members, or clues you have.");
+        System.out.println("Type '" + CommandWord.SUSPECT + "' to guess who the culprit is");
         System.out.println("Type '" + CommandWord.HELP + "' if you need help.");
         System.out.println("Type '" + CommandWord.QUIT + "' to quit the game.");
         System.out.println();
@@ -420,6 +425,10 @@ public class Haunted_Mansion
             
             case GUESS:
             goGuess(command);            
+            break;
+            
+            case SUSPECT:
+            goSuspect(command);
             break;
 
             case QUIT:
@@ -520,6 +529,15 @@ public class Haunted_Mansion
     private void present(String personLostItem){
         boolean present;
         switch (personLostItem){
+            // the key
+            case "FatherCloset":
+                if (!items.contains(key)){
+                    System.out.println(FatherCloset.getItemDescription());
+                } else {
+                    System.out.println(FatherCloset.getAltDescription());
+                }
+                break;
+            
             // loses a member
             case "winebox":
                 System.out.println(winebox.getItemDescription());
@@ -628,14 +646,14 @@ public class Haunted_Mansion
         int cluesNeed = cluesNeedToWin - cluesHave;
         if (cluesHave >= cluesNeedToWin && currentRoom.equals(livingroom)){
             System.out.println("It seems you have solved this mystery. Who do you think is the culprit?");
-            System.out.println("Type the command 'It's' and then the name of the person you suspect");
+            System.out.println("Type the command 'Suspect' and then the name of the person you suspect");
         } else if (cluesHave >= cluesNeedToWin && !currentRoom.equals(livingroom)){
             System.out.println("You must go to the caretaker in the livingroom in order to guess");
         } else if (cluesHave < cluesNeedToWin){
             System.out.println("You need " + cluesNeed + " more clues in order to guess");
         } else if (cluesHave == clues.size()){
             System.out.println("This is your last try to guess.");
-            System.out.println("Type the command 'It's' and then the name of the person you suspect");
+            System.out.println("Type the command 'Suspect' and then the name of the person you suspect");
         }
         return;
     }  
@@ -652,30 +670,34 @@ public class Haunted_Mansion
     {
         int cluesHave = cluesList.size();
         int cluesNeed = cluesNeedToWin - cluesHave;
-        if(!command.hasSecondWord()) {
-            // if there is no second word, we don't know who you suspect is the culprit...
-            System.out.println("Who do you suspect?");
-            System.out.println("Type the command 'It's' and then the name of the person you suspect");
+        if (cluesHave < cluesNeedToWin){
+            System.out.println("You need " + cluesNeed + " more clues in order to guess. You currently have " + cluesHave);
             return;
-        } else if (cluesHave >= cluesNeedToWin && !currentRoom.equals(livingroom)){
+        } else if ((cluesHave >= cluesNeedToWin && !currentRoom.equals(livingroom))){
             System.out.println("You must first go to the caretaker in the livingroom, tell him you are ready to guess.");
             return;
-        } else if (cluesHave < cluesNeedToWin){
-            System.out.println("You need " + cluesNeed + " more clues in order to guess");
+        } else if ((!command.hasSecondWord())){
+            // if there is no second word, we don't know who you suspect is the culprit...
+            System.out.println("Who do you suspect?");
+            System.out.println("Type the command 'Suspect' and then the name of the person you suspect");
             return;
-        }
+        } //else if (cluesNeedToWin > 7) {
+           // System.out.println("Sorry, you have taken too long to solve this myster. We have decided to let someone else investigate this mystery. \n You have lost the game");
+        //}
+
         
         String suspect = command.getSecondWord();
-        //Items itemInRoom = currentRoom.items.get(itemName);
         if (suspect.equals("Wren")){
             System.out.println("Congratulations! You've solved the mystery!");
             return;
+        } else if (cluesNeedToWin > 7) {
+            System.out.println("Sorry, you have taken too long to solve this myster. We have decided to let someone else investigate this mystery. \n You have lost the game");
         } else {
-            cluesNeedToWin =+ 1;
+            cluesNeedToWin++;
             System.out.println("That is incorrect. Please go search for more clues then try again.");
             System.out.println("You now need a total of " + cluesNeedToWin + " number of clues to guess again");
             return;
-        }
+        } 
 
     }
     
@@ -695,6 +717,8 @@ public class Haunted_Mansion
             printMembers();
         } else if (command.getSecondWord().equals("clues")){
             printClues();
+        } else {
+            System.out.println("To view your items type 'Inventory items', members type 'Inventory members', or clues 'Inventory clues'");
         }
     }
 
