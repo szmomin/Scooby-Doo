@@ -1,0 +1,8 @@
+#BlueJ class context
+comment0.params=itemName\ itemDescription\ clueDescription
+comment0.target=Clue(java.lang.String,\ java.lang.String,\ java.lang.String)
+comment0.text=\r\n\ Constructor\ for\ objects\ of\ class\ Items\r\n
+comment1.params=
+comment1.target=java.lang.String\ getClueDescription()
+comment1.text=\r\n\ .getClueDescription.\r\n\ Returns\ the\ clue\ description\ that\ will\ be\ displayed\ when\ necessary\r\n
+numComments=2
