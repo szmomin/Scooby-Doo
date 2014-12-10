@@ -24,6 +24,7 @@ public class Haunted_Mansion
     private Clue thisClue;
     private String clueDescription;
     private int cluesNeedToWin;
+    private int membersNeedToWin;
     
     private ArrayList<Items> items;
     private Items thisItem;
@@ -37,6 +38,7 @@ public class Haunted_Mansion
     private boolean present;
     
     private Parser parser;
+    private ParserWithFileInput parserWithFileInput;
     private Room currentRoom;
     
     Room cemetary, study, kitchen, diningroom, livingroom, hallway, winecellar, dungeon, bathroom, fatherbedroom, sonbedroom;
@@ -66,11 +68,12 @@ public class Haunted_Mansion
         members = new ArrayList<MysteryInc>();
         clues = new HashMap<String, Clue>();
         cluesNeedToWin = 4;
+        membersNeedToWin = 2;
         createRooms();
         createItems();
         createMembers();
         parser = new Parser();
-        play();
+        //play();
     }
     
 
@@ -179,7 +182,7 @@ public class Haunted_Mansion
         toolshed = new Clue ("toolshed", "Look! Tape and a white sheet! A clue! A clue!", "Tape and white sheet found in the Cemetery's toolshed");
         gravestone = new Items ("gravestone", "There are a few cobwebs, but other than that, nothing!");
         mosileum = new ItemMember ("mosileum", "Oh no! Velma lost her glasses! You have now lost Velma.", " ");
-        statue = new ItemMember ("statue", "Look! A rope that can be collected to maybe used to rescue someone later \n Type 'Collect  key' to collect it.",
+        statue = new ItemMember ("statue", "Look! A rope that can be collected to maybe used to rescue someone. \n Type 'Collect  rope' to collect it.",
                                 "The rope can be used to rescue Fred from the trapdoor! Fred is now back with the gang Good boy Scooby!");
         rope = new ItemCollect ("rope", "You have now picked up the rope. It is in your inventory", true);
         cemetary.setItem("toolshed", toolshed);
@@ -204,7 +207,7 @@ public class Haunted_Mansion
         // Items for the Dinning Room
         cabinet = new Items ("cabinet", "So many dishes! So few clues! Try again Scooby Doo!");
         diningtable = new Items ("diningtable", "What an incredibly large table! The Alcott family must have been monstrously large at some point.");
-        vase = new Items ("vase", "Here is a key! A clue! A clue! It must unlock the safe! You have found Dr. Alcott's will! Good boy Scooby! \n Type 'Collect  key' to collect it.");
+        vase = new Items ("vase", "Here is a key! A clue! A clue! It must unlock the safe! Good boy Scooby! \n Type 'Collect  key' to collect it.");
         armoire = new Items ("armoire", "Oops. Nothing here. Keep looking Scooby!");
         key = new ItemCollect ("key", "You have now picked up the key. It is in your inventory", true);
         diningroom.setItem("cabinet", cabinet);
@@ -312,6 +315,19 @@ public class Haunted_Mansion
         }
         System.out.println("Thank you for playing.  Good bye.");
     }
+    
+    public void playWithFileInput()
+    {
+        printWelcome();
+        // Enter the main command loop.  Here we repeatedly read commands and
+        // execute them until the game is over.
+                
+        boolean finished = false;
+        while (! finished) {
+            Command command = parserWithFileInput.getCommand();
+            finished = processCommand(command);
+        }
+    }
 
     /**
      * Print out the opening message for the player.
@@ -329,7 +345,7 @@ public class Haunted_Mansion
         System.out.println("located somewhere else in the Mansion that will return the member to the gang. You will start off in the living room.");
         System.out.println();
         System.out.println("The living room is the center of the house and is the only official way to go up or down to the other floors. The caretaker will be in the living room to answer");
-        System.out.println("appropriate questions. You will also go to him if you wish to guess who the ghost is. Scooby Doo must have at least 5 clues found and 2 gang members STILL with");
+        System.out.println("appropriate questions. You will also go to him if you wish to guess who the ghost is. Scooby Doo must have at least 4 clues found and 2 gang members STILL with");
         System.out.println("him in order to guess who the Ghost of the Haunted Mansion is. A correct guess will win the game."); 
             //while a wrong guess will  cause you to lose the game increase the clue or member requirement +1.");
             // Got rid of the increasing requirement bc no time to include it
@@ -357,7 +373,7 @@ public class Haunted_Mansion
         for (int i = 0; i < items.size(); i++) {
             itemCollected = items.get(i);
             item = itemCollected.getItemName();            
-            System.out.print(i + 1 + ". " + item);
+            System.out.println(i + 1 + ". " + item);
         }
     }
     
@@ -369,9 +385,7 @@ public class Haunted_Mansion
         System.out.println("These gang members are still with you:");
         for (int i = 0; i < members.size(); i++) {
             thisMember = (MysteryInc) members.get(i);
-            if (thisMember.getPresent()){
-                thisMember.print();
-            }
+            thisMember.print();
         }
     }
     
@@ -541,48 +555,67 @@ public class Haunted_Mansion
             // loses a member
             case "winebox":
                 System.out.println(winebox.getItemDescription());
-                Fred.loseMember();
+                //Fred.loseMember();
+                members.remove(Fred);
+                if (items.contains(rope)){
+                    System.out.println(statue.getAltDescription());
+                    //Fred.saveMember();
+                    members.add(Fred);
+                } 
                 break;
             
             case "mosileum":
                 System.out.println(mosileum.getItemDescription());
-                Velma.loseMember();
+                //Velma.loseMember();
+                members.remove(Velma);
                 break;
             
             case "counters":
                 System.out.println(counters.getItemDescription());
-                Shaggy.loseMember();
+                //Shaggy.loseMember();
+                members.remove(Shaggy);
                 break;
             
             case "SonBed":
                 System.out.println(SonBed.getItemDescription());
-                Daphne.loseMember();
+                //Daphne.loseMember();
+                members.remove(Daphne);
                 break;
             
             // rescue a member back
             case "statue":
-                if(!Fred.getPresent()){
-                    Fred.saveMember();
+                if (members.contains(Fred)){
+                    System.out.println(statue.getItemDescription());
+                } else {
+                    System.out.println(statue.getAltDescription());
+                }
+                /*
+                if(!members.contains(Fred) && !items.contains(rope)){
+                    System.out.println(statue.getItemDescription());
+                    //Fred.saveMember();
+                } else if (!members.contains(Fred)){
                     System.out.println(statue.getAltDescription());
                 } else {
                     System.out.println(statue.getItemDescription());
                 }
+                */
                 break;
             
             case "fireplace":
-                thisMember = Velma;
-                if(thisMember.getPresent()){
+                //thisMember = Velma;
+                if(members.contains(Velma)){ //thisMember.getPresent()
                     System.out.println(fireplace.getItemDescription());
                 } else {
-                    
-                    Velma.saveMember();
+                    //Velma.saveMember();
+                    members.add(Velma);
                     System.out.println(fireplace.getAltDescription());
                 }
                 break;
             
             case "BathroomCabinet":
-                if(!Shaggy.getPresent()){
-                    Shaggy.saveMember();
+                if(!members.contains(Shaggy)){ //!Shaggy.getPresent()
+                    //Shaggy.saveMember();
+                    members.add(Shaggy);
                     System.out.println(BathroomCabinet.getAltDescription());
                 } else {
                     System.out.println(BathroomCabinet.getItemDescription());
@@ -590,8 +623,9 @@ public class Haunted_Mansion
                 break;
             
             case "cell":
-                if(!Daphne.getPresent()){
-                    Daphne.saveMember();
+                if(!members.contains(Daphne)){ //!Daphne.getPresent()
+                    //Daphne.saveMember();
+                    members.add(Daphne);
                     System.out.println(cell.getAltDescription());
                 } else {
                     System.out.println(cell.getItemDescription());
@@ -619,15 +653,23 @@ public class Haunted_Mansion
         
         if (itemInRoom != null){
             // checks to see if the item is able to be collected or not
-           boolean collectItem = itemInRoom.getPickUp(); 
-            if (collectItem){
-                String Description = itemInRoom.getItemDescription();
-                System.out.println(Description);
-                items.add(itemInRoom); //add the item in the array list items
-            } else {
-                System.out.println("Sorry, this item cannot be picked up");
-                return;
-           }
+            if (!items.contains(itemInRoom)){
+               boolean collectItem = itemInRoom.getPickUp(); 
+               if (collectItem){
+                   String Description = itemInRoom.getItemDescription();
+                   System.out.println(Description);
+                   items.add(itemInRoom); //add the item in the array list items
+                   if (!members.contains(Fred)) {
+                       System.out.println(statue.getAltDescription());
+                       members.add(Fred);
+                   }
+                } else {
+                    System.out.println("Sorry, this item cannot be picked up");
+                    return;
+                }
+          } else {
+              System.out.println("The " + itemName + " is already in your inventory");
+          }
         } else {
             System.out.println("Sorry, this item is not in this room or it does not exist");
             return;
@@ -644,16 +686,22 @@ public class Haunted_Mansion
     {
         int cluesHave = cluesList.size();
         int cluesNeed = cluesNeedToWin - cluesHave;
-        if (cluesHave >= cluesNeedToWin && currentRoom.equals(livingroom)){
-            System.out.println("It seems you have solved this mystery. Who do you think is the culprit?");
-            System.out.println("Type the command 'Suspect' and then the name of the person you suspect");
+        int membersHave = members.size();
+        int membersNeed = membersNeedToWin - membersHave;
+        if (cluesHave >= cluesNeedToWin && currentRoom.equals(livingroom) && membersHave >= membersNeedToWin){
+            System.out.println("It seems you think you have solved this mystery. Who do you think is the culprit?");
+            System.out.println("Type the command 'Suspect' and then the name of the person you suspect.");
         } else if (cluesHave >= cluesNeedToWin && !currentRoom.equals(livingroom)){
-            System.out.println("You must go to the caretaker in the livingroom in order to guess");
+            System.out.println("You must go to the caretaker in the livingroom in order to guess.");
         } else if (cluesHave < cluesNeedToWin){
-            System.out.println("You need " + cluesNeed + " more clues in order to guess");
+            System.out.println("You need " + cluesNeed + " more clues in order to guess.");
+            System.out.println("See if you can collect more clues through out the mansion");
+        } else if(membersHave < membersNeedToWin) {
+            System.out.println("You need " + membersNeed + " more gang members in order to guess.");
+            System.out.println("Look around the mansion some more and resuce your gang members.");            
         } else if (cluesHave == clues.size()){
             System.out.println("This is your last try to guess.");
-            System.out.println("Type the command 'Suspect' and then the name of the person you suspect");
+            System.out.println("Type the command 'Suspect' and then the name of the person you suspect.");
         }
         return;
     }  
@@ -670,6 +718,8 @@ public class Haunted_Mansion
     {
         int cluesHave = cluesList.size();
         int cluesNeed = cluesNeedToWin - cluesHave;
+        int membersHave = members.size();
+        int membersNeed = membersNeedToWin - membersHave;
         if (cluesHave < cluesNeedToWin){
             System.out.println("You need " + cluesNeed + " more clues in order to guess. You currently have " + cluesHave);
             return;
@@ -681,9 +731,10 @@ public class Haunted_Mansion
             System.out.println("Who do you suspect?");
             System.out.println("Type the command 'Suspect' and then the name of the person you suspect");
             return;
-        } //else if (cluesNeedToWin > 7) {
-           // System.out.println("Sorry, you have taken too long to solve this myster. We have decided to let someone else investigate this mystery. \n You have lost the game");
-        //}
+        } else if (membersHave < membersNeedToWin) {
+            System.out.println("You need " + membersNeed + " more gang members in order to guess. You currently have " + membersHave + " with you.");
+            return;
+        }
 
         
         String suspect = command.getSecondWord();
@@ -691,7 +742,7 @@ public class Haunted_Mansion
             System.out.println("Congratulations! You've solved the mystery!");
             return;
         } else if (cluesNeedToWin > 7) {
-            System.out.println("Sorry, you have taken too long to solve this myster. We have decided to let someone else investigate this mystery. \n You have lost the game");
+            System.out.println("Sorry, you have taken too long to solve this mystery. We have decided to let someone else investigate this mystery.\n You have lost the game");
         } else {
             cluesNeedToWin++;
             System.out.println("That is incorrect. Please go search for more clues then try again.");
